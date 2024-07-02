@@ -20,10 +20,14 @@ class _LoginScreenState extends State<LoginScreen> {
   void submit() {
     if (formKey.currentState!.validate()) {
       Messages.showLoadingDialog(context);
-      FirebaseAuth.instance.signInWithEmailAndPassword(
+      FirebaseAuth.instance
+          .signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
-      );
+      )
+          .then((_) {
+        Navigator.pop(context);
+      });
     }
   }
 

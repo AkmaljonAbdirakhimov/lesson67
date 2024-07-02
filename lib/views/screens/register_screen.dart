@@ -28,8 +28,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         password: passwordController.text,
       )
           .then((user) {
-        Navigator.pop(context);
-        Navigator.pop(context);
+        Navigator.pop(context); // remove loading
+        Navigator.pop(context);// remove register screen
       });
     }
   }
