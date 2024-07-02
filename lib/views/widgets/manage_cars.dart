@@ -1,8 +1,11 @@
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lesson67/controllers/cars_controller.dart';
+import 'package:lesson67/services/firebase_storage_service.dart';
 import 'package:lesson67/utils/messages.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +21,7 @@ class _ManageCarsState extends State<ManageCars> {
   File? imageFile;
 
   void addCar() async {
-    Messages.showLoadingDialog(context);
+    // Messages.showLoadingDialog(context);
     await context.read<CarsController>().addCar(
           nameController.text,
           imageFile!,
@@ -35,6 +38,7 @@ class _ManageCarsState extends State<ManageCars> {
     final imagePicker = ImagePicker();
     final XFile? pickedImage = await imagePicker.pickImage(
       source: ImageSource.gallery,
+      maxWidth: 1000,
       imageQuality: 50,
       requestFullMetadata: false,
     );
